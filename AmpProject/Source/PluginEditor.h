@@ -27,9 +27,21 @@ public:
     void resized() override;
 
 private:
-    Label titleLabel;
-    Label versionLabel;
-    Label emailLabel;
+    Label mTitleLabel;
+    Label mVersionLabel;
+    Label mEmailLabel;
+
+    Label mAmpLoaded;
+    Label mIRLoaded;
+    Label mCabSimEnabled;
+
+    TextButton mToggleCabSim{ "Enable/disable cabinet simulation" };
+    TextButton mLoadAmp{ "Load amp" };
+    TextButton mLoadIR{ "Load IR" };
+
+    void toggleCabSim();
+    void loadAmp();
+    void loadIR();
 
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.

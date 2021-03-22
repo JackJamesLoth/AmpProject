@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="JYZWjS" name="AmpProject" projectType="audioplug" jucerVersion="5.4.7"
-              companyName="Jack Loth" pluginFormats="buildStandalone,buildVST3"
-              companyEmail="jackjamesloth@gmail.com" companyWebsite="www.jackloth.com">
-  <MAINGROUP id="fexRii" name="AmpProject">
-    <GROUP id="{2407B56B-DE40-3F64-AF7D-F77DFB6B3BC0}" name="Source">
-      <FILE id="utCFSk" name="Model.cpp" compile="1" resource="0" file="Source/Model.cpp"/>
-      <FILE id="NZL5X1" name="Model.h" compile="0" resource="0" file="Source/Model.h"/>
-      <FILE id="eskrTz" name="Conv1d.h" compile="0" resource="0" file="Source/Conv1d.h"/>
-      <FILE id="bktv2d" name="Conv1d.cpp" compile="1" resource="0" file="Source/Conv1d.cpp"/>
-      <FILE id="HeuvIP" name="ConvLayer.cpp" compile="1" resource="0" file="Source/ConvLayer.cpp"/>
-      <FILE id="JUc3oN" name="ConvLayer.h" compile="0" resource="0" file="Source/ConvLayer.h"/>
-      <FILE id="ohWnrk" name="PluginProcessor.cpp" compile="1" resource="0"
+<JUCERPROJECT id="hSgAbi" name="Archetype Loth" projectType="audioplug" jucerVersion="5.4.7"
+              companyName="Jack Loth">
+  <MAINGROUP id="zNL7JO" name="Archetype Loth">
+    <GROUP id="{A721D2CB-4198-41BC-D419-0974BCB596A4}" name="Source">
+      <FILE id="QaCxiD" name="ConvLayer.cpp" compile="1" resource="0" file="Source/ConvLayer.cpp"/>
+      <FILE id="zeK4D3" name="ConvLayer.h" compile="0" resource="0" file="Source/ConvLayer.h"/>
+      <FILE id="zYyZj5" name="Conv1d.cpp" compile="1" resource="0" file="Source/Conv1d.cpp"/>
+      <FILE id="rgxPKc" name="Conv1d.h" compile="0" resource="0" file="Source/Conv1d.h"/>
+      <FILE id="xLfxjQ" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
-      <FILE id="NXwefz" name="PluginProcessor.h" compile="0" resource="0"
+      <FILE id="zeVoQS" name="PluginProcessor.h" compile="0" resource="0"
             file="Source/PluginProcessor.h"/>
-      <FILE id="rH1nTf" name="PluginEditor.cpp" compile="1" resource="0"
+      <FILE id="NTblYZ" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
-      <FILE id="XnXbWC" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="GPKOhx" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="oI91qn" name="Model.cpp" compile="1" resource="0" file="Source/Model.cpp"/>
+      <FILE id="RBwHHy" name="Model.h" compile="0" resource="0" file="Source/Model.h"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>

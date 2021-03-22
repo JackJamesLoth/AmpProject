@@ -24,9 +24,11 @@ public:
     void forwardOld(AudioBuffer<float>& buffer, int numSamples, int channel, int writePosition);
     void copyInputData(const float** inputData, int numSamples);
     int idx(int ch, int i, int numSamples);
+
+    void loadJSONData(File file);
 private:
 
-    void loadJSONData();
+    
     int num_dilations;
     int num_channels;
 

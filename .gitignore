@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# Directories
+AmpProject/JuceLibraryCode/
+AmpProject/Builds/

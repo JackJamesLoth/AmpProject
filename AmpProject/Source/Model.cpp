@@ -127,7 +127,7 @@ void AmpModel::initModel(int dilations, int channels, int ampBufferSize, int aud
     //mBuffer.setSize(channels, ampBufferSize);
     mBuffer.setSize(channels, audioBufferSize*16);
 
-    loadJSONData();
+    //loadJSONData();
 
     /*
     float* testArr = new float[10];
@@ -622,14 +622,14 @@ void AmpModel::forwardOld(AudioBuffer<float>& buffer, int numSamples, int channe
 
 
 
-void AmpModel::loadJSONData() {
+void AmpModel::loadJSONData(File file) {
     DBG("Loading amp parameters");
 
-    File testJson = File("D:/Dev/Audio/AmpProject/json/pvh_model_gain_4.json");
+    //File file = File("D:/Dev/Audio/AmpProject/json/pvh_model_gain_4.json");
 
     DBG("Loaded file");
 
-    var jsonData = JSON::parse(testJson);
+    var jsonData = JSON::parse(file);
     int channels = jsonData["residual_channels"];
     DBG(channels);
 

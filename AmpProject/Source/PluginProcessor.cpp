@@ -99,6 +99,7 @@ void AmpProjectAudioProcessor::changeProgramName (int index, const String& newNa
 //==============================================================================
 void AmpProjectAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
+    const int numInputChannels = getTotalNumInputChannels();
 
     // 2047 is extra samples that should be padded using 10 conv layers
     const int ampBufferSize = samplesPerBlock + mReceptiveField; 
@@ -109,15 +110,39 @@ void AmpProjectAudioProcessor::prepareToPlay (double sampleRate, int samplesPerB
     // Initialize amp model
     mAmpModel.initModel(10, 16, ampBufferSize, samplesPerBlock);
     
-    /*
-    * 
-    * 
-    * ***NOTE*** The samples in the buffer default to -4.31602e+08
-    * It would be ideal for this to be 0, however, I will leave it as it is for now at least
-    * It might sound weird at the beginning...
-    * 
-    * 
-    */
+    File file = File("D:\\Dev\\Audio\\DelayTest\\IRs\\faIR_ToolPot.wav");
+    DBG(file.getFullPathName());
+
+    //File ampFile = File("D:/Dev/Audio/AmpProject/json/pvh_model_gain_4.json");
+    //mAmpModel.loadJSONData(ampFile);
+    
+}
+
+void AmpProjectAudioProcessor::updateIRFile(File file) {
+    // Prepare convolution
+    dsp::ProcessSpec spec1;
+    spec1.sampleRate = getSampleRate();
+    spec1.maximumBlockSize = getBlockSize();
+    spec1.numChannels = getTotalNumInputChannels();
+    dsp::ProcessSpec spec2;
+    spec2.sampleRate = getSampleRate();
+    spec2.maximumBlockSize = getBlockSize();
+    spec2.numChannels = getTotalNumInputChannels();
+
+    mConvolution1.prepare(spec1);
+    mConvolution2.prepare(spec2);
+
+    // Load IR
+    mConvolution1.loadImpulseResponse(file, false, false, 0);
+    mConvolution2.loadImpulseResponse(file, false, false, 0);
+
+    // Enable cab sim
+    mCabSimEnabled = true;
+}
+
+void AmpProjectAudioProcessor::updateAmpFile(File file) {
+    mAmpModel.loadJSONData(file);
+
 }
 
 void AmpProjectAudioProcessor::releaseResources()
@@ -171,6 +196,21 @@ void AmpProjectAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuff
     float* outBuffer = buffer.getWritePointer(0);
 
     mAmpModel.forward(buffer, bufferLength, 0, mWritePosition);
+
+
+    for (size_t channel = 0; channel < totalNumInputChannels; channel++)
+    {
+        if (mCabSimEnabled) {
+            dsp::AudioBlock<float> block(buffer);
+            if (channel == 0) {
+                mConvolution1.process(dsp::ProcessContextReplacing<float>(block));
+            }
+            else {
+                mConvolution2.process(dsp::ProcessContextReplacing<float>(block));
+            }
+        }
+        
+    }
 
     // Get pointer to amp buffer
     //const float* ampModelBufferData = mAmpBuffer.getReadPointer(0);

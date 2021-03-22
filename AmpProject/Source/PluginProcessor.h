@@ -59,7 +59,11 @@ public:
     void fillAmpBuffer(const int ampBufferLength, const int bufferLength, int channel, const float* inBuffer);
     void getFromAmpBuffer(AudioBuffer<float>& buffer, const int ampBufferLength, const int bufferLength, int channel, const float* ampModelBufferData);
 
-    float level;
+    void updateIRFile(File file);
+    void updateAmpFile(File file);
+
+
+    float mCabSimEnabled{ false };
 
 private:
     AmpModel mAmpModel;
@@ -71,6 +75,8 @@ private:
     // Cabinet sim
     dsp::Convolution mConvolution1;
     dsp::Convolution mConvolution2;
+
+    
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AmpProjectAudioProcessor)
